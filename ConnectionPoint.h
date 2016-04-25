@@ -1,4 +1,9 @@
 /*
+ * Outlook Integration library.
+ *
+ * Copyright (c) 2016, Ixperta Solutions s.r.o.
+ *
+ * This work is based on
  * Jitsi, the OpenSource Java VoIP and Instant Messaging client.
  *
  * Copyright @ 2015 Atlassian Pty Ltd
