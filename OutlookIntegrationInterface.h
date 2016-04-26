@@ -8,8 +8,8 @@ class OutlookIntegrationInterface
 {
 public:
 	static OutlookIntegrationInterface* getInstance();
-	static void destroy(OutlookIntegrationInterface* instance);
 
+	void destroy();
 	void setStartConversationCallback(t_startConversation callback);
 
 	// Callbacks ment for internal use

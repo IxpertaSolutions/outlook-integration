@@ -13,9 +13,10 @@ OutlookIntegrationInterface * OutlookIntegrationInterface::getInstance()
 	return _instance;
 }
 
-void OutlookIntegrationInterface::destroy(OutlookIntegrationInterface * instance)
+void OutlookIntegrationInterface::destroy()
 {
 	delete _instance;
+	_instance = NULL;
 }
 
 void OutlookIntegrationInterface::setStartConversationCallback(t_startConversation callback)

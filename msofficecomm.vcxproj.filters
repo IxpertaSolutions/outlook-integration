@@ -75,6 +75,9 @@
     <ClInclude Include="OutlookIntegrationInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OutlookIntegrationExported.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClassFactory.cxx">
@@ -122,10 +125,10 @@
     <ClCompile Include="WeakReferenceSource.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cxx">
+    <ClCompile Include="OutlookIntegraionInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OutlookIntegraionInterface.cpp">
+    <ClCompile Include="OutlookIntegrationExported.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
