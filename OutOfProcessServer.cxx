@@ -398,7 +398,7 @@ unsigned __stdcall OutOfProcessServer::run(void *)
                                 if (WM_QUIT == msg.message)
                                 {
                                     quit = TRUE;
-                                    ret = msg.wParam;
+                                    ret = (unsigned) msg.wParam;
                                     break;
                                 }
                                 else if (msg.hwnd)

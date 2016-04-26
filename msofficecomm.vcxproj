@@ -161,10 +161,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Callbacks.h" />
     <ClInclude Include="ClassFactory.h" />
     <ClInclude Include="ConnectionPoint.h" />
     <ClInclude Include="DispatchImpl.h" />
     <ClInclude Include="DMessengerEventsConnectionPoint.h" />
+    <ClInclude Include="OutlookIntegrationInterface.h" />
     <ClInclude Include="IWeakReference.h" />
     <ClInclude Include="IWeakReferenceSource.h" />
     <ClInclude Include="Log.h" />
@@ -183,6 +185,7 @@
   <ItemGroup>
     <ClCompile Include="ClassFactory.cxx" />
     <ClCompile Include="DMessengerEventsConnectionPoint.cxx" />
+    <ClCompile Include="OutlookIntegraionInterface.cpp" />
     <ClCompile Include="IWeakReference.cxx" />
     <ClCompile Include="IWeakReferenceSource.cxx" />
     <ClCompile Include="Log.cxx" />

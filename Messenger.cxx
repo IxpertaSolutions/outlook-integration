@@ -26,6 +26,7 @@
 #include "MessengerContact.h"
 #include "MessengerContacts.h"
 #include "MessengerServices.h"
+#include "OutlookIntegrationInterface.h"
 #include <olectl.h>
 
 EXTERN_C const GUID DECLSPEC_SELECTANY DIID_DMessengerEvents
@@ -735,19 +736,12 @@ Messenger::StartConversation
 	else
 	{
 		Log::d(_T("toStringArray error: %d\n"), hr);
+		return E_INVALIDARG;
 	}
 	std::string str(wstr.begin(), wstr.end());
 	Log::d(_T("%s"), wstr.c_str());
 
-
-	int msgboxID = MessageBox(
-		NULL,
-		(LPCWSTR)wstr.c_str(),
-		(LPCWSTR)L"Called number",
-		MB_OK | MB_SYSTEMMODAL
-	);
-
-	return E_NOTIMPL;
+	return OutlookIntegrationInterface::getInstance()->callStartConversation(wstr);
 }
 
 STDMETHODIMP Messenger::StartVideo(VARIANT vContact, IDispatch **ppMWindow)
