@@ -741,7 +741,7 @@ Messenger::StartConversation
 	std::string str(wstr.begin(), wstr.end());
 	Log::d(_T("%s"), wstr.c_str());
 
-	return OutlookIntegrationInterface::getInstance()->callStartConversation(wstr);
+	return OutlookIntegrationInterface::getInstance()->callStartConversation(wstr.c_str());
 }
 
 STDMETHODIMP Messenger::StartVideo(VARIANT vContact, IDispatch **ppMWindow)

@@ -24,11 +24,11 @@ void OutlookIntegrationInterface::setStartConversationCallback(t_startConversati
 	_startConversationCallback = callback;
 }
 
-STDMETHODIMP OutlookIntegrationInterface::callStartConversation(std::wstring number)
+STDMETHODIMP OutlookIntegrationInterface::callStartConversation(const wchar_t *strNumber)
 {
 	if (_startConversationCallback != NULL)
 	{
-		return _startConversationCallback(number);
+		return _startConversationCallback(strNumber);
 	}
 	return E_NOTIMPL;
 }
