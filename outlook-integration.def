@@ -1,0 +1,5 @@
+LIBRARY outlook-integration
+EXPORTS
+	outlook_integration_interface_get
+	outlook_integration_interface_set_conversation_start_callback
+	outlook_integration_interface_destroy
