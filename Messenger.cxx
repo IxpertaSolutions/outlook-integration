@@ -731,11 +731,11 @@ Messenger::StartConversation
     hr = toString(CComVariant(vConversationData), &wstr);
 	if (SUCCEEDED(hr))
 	{
-		Log::d(_T("toStringArray ok\n"));
+		Log::d(_T("toString ok\n"));
 	}
 	else
 	{
-		Log::d(_T("toStringArray error: %d\n"), hr);
+		Log::d(_T("toString error: %d\n"), hr);
 		return E_INVALIDARG;
 	}
 	std::string str(wstr.begin(), wstr.end());
