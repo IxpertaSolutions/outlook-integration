@@ -731,17 +731,40 @@ Messenger::StartConversation
     hr = toString(CComVariant(vConversationData), &wstr);
 	if (SUCCEEDED(hr))
 	{
-		Log::d(_T("toString ok\n"));
+		Log::d(_T("toStringArray ok\n"));
 	}
 	else
 	{
-		Log::d(_T("toString error: %d\n"), hr);
+		Log::d(_T("toStringArray error: %d\n"), hr);
 		return E_INVALIDARG;
 	}
 	std::string str(wstr.begin(), wstr.end());
 	Log::d(_T("%s"), wstr.c_str());
 
-	return OutlookIntegrationInterface::getInstance()->callStartConversation(wstr.c_str());
+	switch (OutlookIntegrationInterface::getInstance()->callStartConversation(wstr.c_str()))
+	{
+	case 0:
+		return S_OK;
+		break;
+	case 1:
+		return E_FAIL;
+		break;
+	case 2:
+		return E_INVALIDARG;
+		break;
+	case 3:
+		return MSGR_E_NOT_LOGGED_ON;
+		break;
+	case 4:
+		return S_FALSE;
+		break;
+	case 5:
+		return E_NOTIMPL;
+		break;
+	default:
+		return E_FAIL;
+		break;
+	}
 }
 
 STDMETHODIMP Messenger::StartVideo(VARIANT vContact, IDispatch **ppMWindow)

@@ -13,7 +13,7 @@ public:
 	void setStartConversationCallback(t_startConversation callback);
 
 	// Callbacks ment for internal use
-	STDMETHODIMP callStartConversation(const wchar_t *strNumber);
+	int callStartConversation(const wchar_t *strNumber);
 
 private:
 	OutlookIntegrationInterface();
