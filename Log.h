@@ -27,28 +27,19 @@
 #include <tchar.h>
 #include <windows.h>
 
+#define DEBUG(format, ...) Log::d(WIDEN(__FILE__), __LINE__, __func__, format, __VA_ARGS__)
+#define WIDEN2(x) L ## x
+#define WIDEN(x) WIDEN2(x)
+
 class Log
 {
 public:
-    static void close()
-        {
-            if (_stderr && (_stderr != stderr))
-            {
-                ::fclose(_stderr);
-                _stderr = stderr;
-            }
-        }
 
-#ifdef _UNICODE
-    static int d(LPCTSTR format, LPCSTR str);
-#endif /* #ifdef _UNICODE */
-    static int d(LPCTSTR format, ...);
-    static FILE *open();
-
-private:
-    static LPTSTR getModuleFileName();
-
-    static FILE *_stderr;
+    static void d(const wchar_t *file,
+		const int line,
+		const char *function_name,
+		LPCTSTR format,
+		...);
 };
 
 #endif /* #ifndef _JMSOFFICECOMM_LOG_H_ */

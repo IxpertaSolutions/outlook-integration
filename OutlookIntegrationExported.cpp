@@ -3,12 +3,15 @@
 
 extern "C" {
 
-DLL_EXPORT void* outlook_integration_interface_get()
+DLL_EXPORT void* outlook_integration_interface_get(log_t logFunction)
 {
-	return OutlookIntegrationInterface::getInstance();
+	OutlookIntegrationInterface * instance;
+	instance = OutlookIntegrationInterface::getInstance();
+	instance->setLoggingFunc(logFunction);
+	return instance;
 }
 
-DLL_EXPORT void outlook_integration_interface_set_conversation_start_callback(void *p, t_startConversation callback)
+DLL_EXPORT void outlook_integration_interface_set_conversation_start_callback(void *p, startConversation_t callback)
 {
 	OutlookIntegrationInterface *_interface = (OutlookIntegrationInterface*)p;
 	_interface->setStartConversationCallback(callback);

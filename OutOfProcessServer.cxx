@@ -227,8 +227,6 @@ HRESULT OutOfProcessServer::revokeClassObjects()
 
 unsigned __stdcall OutOfProcessServer::run(void *)
 {
-    Log::open();
-
     HRESULT hr = ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
     unsigned ret = 0;
 
@@ -283,8 +281,7 @@ unsigned __stdcall OutOfProcessServer::run(void *)
                                  * performance penalty.
                                  */
                                 logMsgWaitForMultipleObjectsExFailed = FALSE;
-                                Log::d(
-                                        _T("OutOfProcessServer::run:")
+								DEBUG(  _T("OutOfProcessServer::run:")
                                         _T(" MsgWaitForMultipleObjectsEx=WAIT_FAILED;")
                                         _T("\n"));
                             }
@@ -323,7 +320,6 @@ unsigned __stdcall OutOfProcessServer::run(void *)
         ::CoUninitialize();
     }
 
-    Log::close();
     return ret;
 }
 

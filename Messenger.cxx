@@ -702,69 +702,25 @@ Messenger::StartConversation
 	VARIANT vConversationData,
 	VARIANT *pvWndHnd)
 {
-	Log::d(_T("%s\n"), FUNC_NAME_MACRO);
-	Log::d(_T("%d\n"), conversationType);
-	if (VT_ARRAY == (vParticipants.vt & VT_ARRAY))
-	{
-		Log::d(_T("looks like safe_array\n"));
-	}
+	DEBUG(_T("%s\n"), FUNC_NAME_MACRO);
+	DEBUG(_T("%d\n"), conversationType);
 
-	std::list<std::wstring> wstringList;
-
-	HRESULT hr = toStringArray(vParticipants, &wstringList);
-	if (SUCCEEDED(hr))
-	{
-		Log::d(_T("toStringArray ok\n"));
-	}
-	else
-	{
-		Log::d(_T("toStringArray error: %d\n"), hr);
-	}
-
-	for (std::wstring & wstr : wstringList)
-	{
-		std::string str(wstr.begin(), wstr.end());
-		Log::d(_T("%s"), str.c_str());
-	}
-
+	// We will user only the data parameter wich seams to be presented in all cases ;).
 	std::wstring wstr;
-    hr = toString(CComVariant(vConversationData), &wstr);
+	HRESULT hr = toString(CComVariant(vConversationData), &wstr);
 	if (SUCCEEDED(hr))
 	{
-		Log::d(_T("toStringArray ok\n"));
+		DEBUG(_T("toStringArray ok\n"));
 	}
 	else
 	{
-		Log::d(_T("toStringArray error: %d\n"), hr);
+		DEBUG(_T("toStringArray error: %d\n"), hr);
 		return E_INVALIDARG;
 	}
 	std::string str(wstr.begin(), wstr.end());
-	Log::d(_T("%s"), wstr.c_str());
+	DEBUG(_T("%s"), wstr.c_str());
 
-	switch (OutlookIntegrationInterface::getInstance()->callStartConversation(wstr.c_str()))
-	{
-	case 0:
-		return S_OK;
-		break;
-	case 1:
-		return E_FAIL;
-		break;
-	case 2:
-		return E_INVALIDARG;
-		break;
-	case 3:
-		return MSGR_E_NOT_LOGGED_ON;
-		break;
-	case 4:
-		return S_FALSE;
-		break;
-	case 5:
-		return E_NOTIMPL;
-		break;
-	default:
-		return E_FAIL;
-		break;
-	}
+	return OutlookIntegrationInterface::getInstance()->callStartConversation(wstr.c_str());
 }
 
 STDMETHODIMP Messenger::StartVideo(VARIANT vContact, IDispatch **ppMWindow)

@@ -36,7 +36,7 @@
 
 #define STDMETHODIMP_E_NOTIMPL_STUB \
     { \
-        Log::d(_T("%s\n"), FUNC_NAME_MACRO); \
+        DEBUG(_T("%s\n"), FUNC_NAME_MACRO); \
         return E_NOTIMPL; \
     }
 
@@ -98,7 +98,7 @@ public:
 
                     if (tstr)
                     {
-                        Log::d(
+						DEBUG(
                                 _T("UnknownImpl::QueryInterface: this=%p; iid=%s;\n"),
                                 (PVOID) this,
                                 tstr);
@@ -120,7 +120,7 @@ public:
 
             if (!refCount)
                 delete this;
-            Log::d(
+			DEBUG(
                     _T("UnknownImpl::Release: this=%p; refCount=%lu;\n"),
                     (PVOID) this,
                     refCount);

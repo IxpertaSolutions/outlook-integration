@@ -10,9 +10,9 @@
 
 extern "C" {
 
-DLL_EXPORT void* outlook_integration_interface_get();
+DLL_EXPORT void* outlook_integration_interface_get(log_t);
 
-DLL_EXPORT void outlook_integration_interface_set_conversation_start_callback(void *, t_startConversation);
+DLL_EXPORT void outlook_integration_interface_set_conversation_start_callback(void *, startConversation_t);
 
 DLL_EXPORT void outlook_integration_interface_destroy(void *);
 
