@@ -38,7 +38,7 @@ public:
     static void d(const wchar_t *file,
 		const int line,
 		const char *function_name,
-		LPCTSTR format,
+		const wchar_t *format,
 		...);
 };
 

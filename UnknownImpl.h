@@ -29,14 +29,14 @@
 #include "WeakReferenceSource.h"
 
 #ifdef _MSC_VER
-#define FUNC_NAME_MACRO __FUNCSIG__
+#define FUNC_NAME_MACRO WIDEN(__FUNCSIG__)
 #else
-#define FUNC_NAME_MACRO __PRETTY_FUNCTION__
+#define FUNC_NAME_MACRO WIDEN(__PRETTY_FUNCTION__)
 #endif
 
 #define STDMETHODIMP_E_NOTIMPL_STUB \
     { \
-        DEBUG(_T("%s\n"), FUNC_NAME_MACRO); \
+        DEBUG(FUNC_NAME_MACRO); \
         return E_NOTIMPL; \
     }
 

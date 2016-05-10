@@ -227,18 +227,22 @@ HRESULT OutOfProcessServer::revokeClassObjects()
 
 unsigned __stdcall OutOfProcessServer::run(void *)
 {
+	DEBUG(L"OutOfProcessServer starting");
     HRESULT hr = ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
     unsigned ret = 0;
 
     if (SUCCEEDED(hr))
     {
+		DEBUG(L"Loding type lib");
         hr = loadRegTypeLib();
         if (SUCCEEDED(hr))
         {
+			DEBUG(L"Setting UpAndRunnging register to 1 (Starting)");
             if (ERROR_SUCCESS == setIMProvidersCommunicatorUpAndRunning(1))
             {
                 MSG msg;
 
+				DEBUG(L"Creating message queue");
                 /*
                  * Create the message queue of this thread before any other part
                  * of the code (e.g. the release method) has a chance to invoke
@@ -246,9 +250,11 @@ unsigned __stdcall OutOfProcessServer::run(void *)
                  */
                 ::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE);
 
+				DEBUG(L"Registering class");
                 hr = registerClassObjects();
                 if (SUCCEEDED(hr))
                 {
+					DEBUG(L"Setting UpAndRunnging register to 2 (Running)");
                     if (ERROR_SUCCESS
                             == setIMProvidersCommunicatorUpAndRunning(2))
                     {
@@ -306,6 +312,10 @@ unsigned __stdcall OutOfProcessServer::run(void *)
                     revokeClassObjects();
                 }
             }
+			else
+			{
+				DEBUG(L"setIMProvidersCommunicatorUpAndRunning(1) failed");
+			}
 
             /*
              * Even if setIMProvidersCommunicatorUpAndRunning(DWORD) failed, it
@@ -316,9 +326,17 @@ unsigned __stdcall OutOfProcessServer::run(void *)
 
             releaseTypeLib();
         }
+		else
+		{
+			DEBUG(L"loadRegTypeLib failed");
+		}
 
         ::CoUninitialize();
     }
+	else
+	{
+		DEBUG(L"CoInitializeEx failed");
+	}
 
     return ret;
 }
